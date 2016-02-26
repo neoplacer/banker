@@ -22,17 +22,25 @@
       <% end %>
     </div>
     <div class="collapse navbar-collapse" id="main-nav-collapse">
+      <div class="nav navbar-nav navbar-right" >  
+        <% if current_user %>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :DELETE, class: 'btn btn-primary navbar-btn' %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, method: :GET, class: 'btn btn-primary navbar-btn' %>
+          <%= link_to "Sign Up", new_user_registration_path, method: :GET, class: 'btn btn-success navbar-btn' %>
+        <% end %>
+    </div>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Dashboard", '#' %></li>
-        <li><%= link_to "My Account", '#' %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div>
 </nav>
 
 <div class="container">
-  <p class="notice"><%= notice %></p>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %>
   <%= yield %>
 </div>
 </body>
