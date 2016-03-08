@@ -3,9 +3,10 @@ class GamesController < ApplicationController
     def new
         # form for user to create game details
          @user = User.find( params[:user_id] )
-        @game = @user.new
+        @game = Game.new
     end
     
+    #Create a new game. If you already have a game it will overwrite it.
     def create
         @user = User.find( params[:user_id] )
         @game = @user.build_game(game_params)
