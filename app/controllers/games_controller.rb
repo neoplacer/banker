@@ -19,6 +19,7 @@ class GamesController < ApplicationController
     
     
     private
+    # You need to sanitize all the params you are passing from your create form
         def game_params
           params.require(:game).permit(:gamename)
         end
