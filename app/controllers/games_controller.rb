@@ -3,7 +3,7 @@ class GamesController < ApplicationController
     def new
         # form for user to create game details
          @user = User.find( params[:user_id] )
-        @game = @user.build_game
+        @game = @user.new
     end
     
     def create
