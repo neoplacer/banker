@@ -1,2 +1,11 @@
 <h2>Home</h2>
-<%= link_to "Create Your Game", new_user_game_path(current_user) if current_user %>
+<% if user_signed_in? %>
+    <% if current_user.game %>
+        <%= link_to "Edit Your Game", edit_user_game_path(current_user) if current_user %>
+       <%= link_to "Reset Your Game", user_game_path(current_user), method: :delete, data: { confirm: 'Are you certain you want to reset your game? There is no undo for this.' } if current_user %>
+    <% else %>
+        <%= link_to "Create A New Game", new_user_game_path(current_user) if current_user %>
+    <% end %>
+<% else %>
+    <p>Sign up or sign in</p>
+<% end %>

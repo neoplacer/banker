@@ -1,0 +1,10 @@
+<%= form_for @game, url: user_game_path do |f| %>
+        <div class="form-group">
+          <%= f.label :gamename %>
+          <%= f.text_field :gamename, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.submit "Setup Game", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
