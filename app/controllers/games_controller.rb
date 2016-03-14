@@ -67,8 +67,7 @@ class GamesController < ApplicationController
     #For game#show, use password-only authentication
         def restrict
             @user = User.find( params[:user_id])
-            @rightanswer = @user.game.entrycode
-            @entrycode = params[:entrycode]
-            render :status=>401, :text=>"Unathorized" unless @entrycode == @rightanswer
+            @entrycode = @user.game.entrycode
+            redirect_to(root_url) unless params[:entrycode] == @entrycode
         end 
 end
