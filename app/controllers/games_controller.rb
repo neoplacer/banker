@@ -2,7 +2,8 @@ class GamesController < ApplicationController
     before_action :authenticate_user!, except: :show
     before_action :only_current_user, except: :show
     # http_basic_authenticate_with name: "axel", password: "hawker", only: :show
-    
+    before_filter :restrict, :only=>:show
+
     def show
         
     end
@@ -58,10 +59,16 @@ class GamesController < ApplicationController
         def game_params
           params.require(:game).permit(:gamename, :entrycode)
         end
+        
         def only_current_user
             @user = User.find( params[:user_id])
             redirect_to(root_url) unless @user == current_user
         end
-    
-    
+    #For game#show, use password-only authentication
+        def restrict
+            @user = User.find( params[:user_id])
+            @rightanswer = @user.game.entrycode
+            @entrycode = params[:entrycode]
+            render :status=>401, :text=>"Unathorized" unless @entrycode == @rightanswer
+        end 
 end
