@@ -1,9 +1,10 @@
 <h2>Your Game(Game-Show)</h2>
-<% if current_user.game %>
-Game Name: <%= @user.game.gamename %><br />
-Entry Code: <%= @user.game.entrycode %><br />
-Created on: <%= @user.game.created_at %><br />
-Last Updated: <%= @user.game.updated_at %><br />
+<% @user = User.find( params[:user_id]) %>
+<% if @user.game %>
+    Game Name: <%= @user.game.gamename %><br />
+    Entry Code: <%= @user.game.entrycode %><br />
+    Created on: <%= @user.game.created_at %><br />
+    Last Updated: <%= @user.game.updated_at %><br />
 <% else %>
     <p>You currently don't have a game setup. Why Don't you start one?</p>
     <%= link_to "Create A New Game", new_user_game_path(current_user) if current_user %>

@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
-    before_action :authenticate_user!
-    before_action :only_current_user
+    before_action :authenticate_user!, except: :show
+    before_action :only_current_user, except: :show
+    # http_basic_authenticate_with name: "axel", password: "hawker", only: :show
     
     def show
         
@@ -55,7 +56,7 @@ class GamesController < ApplicationController
     private
     # You need to sanitize all the params you are passing from your create form
         def game_params
-          params.require(:game).permit(:gamename)
+          params.require(:game).permit(:gamename, :entrycode)
         end
         def only_current_user
             @user = User.find( params[:user_id])
