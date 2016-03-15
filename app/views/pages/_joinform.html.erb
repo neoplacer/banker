@@ -1,0 +1,11 @@
+<%= form_tag("/join", method: "get" ) do %>
+  <div class="form-group">
+    <%= label_tag(:gamecode, "Game Entry Code") %>
+    <%= text_field_tag(:gamecode) %>
+  </div>
+  
+  <div class="form-group">
+    <%= submit_tag( "Join Game") %>
+  </div>
+  
+<% end %>

@@ -68,6 +68,6 @@ class GamesController < ApplicationController
         def restrict
             @user = User.find( params[:user_id])
             @entrycode = @user.game.entrycode
-            redirect_to(root_url) unless params[:entrycode] == @entrycode
+            redirect_to(about_url) unless params[:entrycode] == @entrycode
         end 
 end

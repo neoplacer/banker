@@ -11,6 +11,8 @@ Rails.application.routes.draw do
    root 'pages#home'
    
    get '/about' => 'pages#about'
+   
+   get '/join' => 'pages#join'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
