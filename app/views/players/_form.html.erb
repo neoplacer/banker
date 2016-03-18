@@ -1,0 +1,21 @@
+<%= form_for @player, url: user_game_players_path do |f| %>
+  <div class="form-group">
+    <%= f.label :player_name %>
+    <%= f.text_field :player_name, class: 'form-control' %>
+  </div>
+  
+  <% @playercode = SecureRandom.hex(3) %>
+  <div class="form-group">
+    <%= f.hidden_field :player_code, :value => @playercode  %>
+  </div>
+    
+  <div class="form-group">
+    <%= f.label :balance %>
+    <%= f.number_field :balance, class: 'form-control' %>
+  </div>  
+  
+  <div class="form-group">
+    <%= f.submit "Add Player", class: 'btn btn-primary' %>
+  </div>
+  
+<% end %>
