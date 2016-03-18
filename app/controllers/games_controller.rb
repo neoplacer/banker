@@ -69,11 +69,9 @@ class GamesController < ApplicationController
             @user = User.find( params[:user_id])
             @entrycode = @user.game.entrycode    
             
-            if params[:entrycode] != @entrycode
+            unless params[:entrycode] == @entrycode
                 flash[:danger] = "Enter a Game Code to Join the Game"
                 redirect_to(root_url)
-            else
-                 
             end
            
         end 

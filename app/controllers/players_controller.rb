@@ -18,6 +18,14 @@ class PlayersController < ApplicationController
         end
     end
     
+    def destroy
+        @user = User.find( params[:user_id])
+        @game = @user.game
+        @game.players.destro
+    end
+    
+    
+    
     def new
         # form for user to create game details
         @user = User.find( params[:user_id] )
